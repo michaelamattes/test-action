@@ -17,4 +17,4 @@ runs:
 
     - name: Run Go Tests
       run: go test -run TestAzure
-      working-directory: $GITHUB_ACTION_REPOSITORY/tests/terratest
+      working-directory: github.action.repository/tests/terratest
