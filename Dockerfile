@@ -21,4 +21,7 @@ WORKDIR ${WORKDIR}
 
 RUN declare -l DEBUG="${INPUT_DEBUG}" TOOL="${INPUT_TOOL}" TEST="${INPUT_TEST}" && \
     if [ "${DEBUG}" = "true" ] ; then DEBUG_MODE='-v'; else DEBUG_MODE=''; fi && \
+    ls -la / && \
+    pwd && \
+    ls -la $(pwd) && \
     go test ${DEBUG_MODE} ${WORKDIR}/${TOOL}/${TEST}_test.go
