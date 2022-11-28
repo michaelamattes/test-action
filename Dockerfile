@@ -7,6 +7,13 @@ SHELL ["/bin/bash", "-c"]
 
 COPY ${TESTS_DIR}/ /${TESTS_DIR}/
 
+## add repository
+RUN curl -sSL https://raw.githubusercontent.com/upciti/wakemeops/main/assets/install_repository | bash && \
+    apt-get update
+
+### add needed packages
+RUN apt-get install -y terraform
+
 ###################################### Test Case ######################################
 ARG WORKDIR=/tests
 ARG INPUT_DEBUG='true'
