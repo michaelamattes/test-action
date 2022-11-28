@@ -1,11 +1,14 @@
 ###################################### Image ######################################
-ARG TESTS_DIR=/tests
+ARG TESTS_DIR=tests
 
 ## build Image
 FROM golang:latest
 SHELL ["/bin/bash", "-c"]
 
-COPY ${TESTS_DIR}/ /${TESTS_DIR}/
+RUN DIR=`basename $(pwd)`
+
+COPY ${DIR}/ /DIR/
+COPY ${TESTS_DIR}/ /DIR/${TESTS_DIR}/
 
 RUN curl -sSL https://raw.githubusercontent.com/upciti/wakemeops/main/assets/install_repository | bash && \
     apt-get update && \
