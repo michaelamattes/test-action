@@ -1,20 +1,18 @@
 ---
 name: 'Tests Action'
 description: 'Call Tests and get the results'
-inputs: {}
+inputs:
+  tool:
+    description: 'name of the test tool to use e.g. terratest'
+    required: true
+    default: terrascan
+  testname:
+    description: 'name of the test to run e.g. TestAzure'
+    required: true
 outputs: {}
 runs:
-  using: "composite"
-  steps:
-    - name: Setup Terraform
-      uses: hashicorp/setup-terraform@v1
-
-    - name: Setup Go
-      uses: actions/setup-go@v3
-      with:
-        go-version: 1.19
-        check-latest: true
-
-    - name: Run Go Tests
-      run: go test -run TestAzure
-      working-directory: github.action.repository/tests/terratest
+  using: 'docker'
+  image: 'Dockerfile'
+  args:
+    - ${{ inputs.tool}}
+    - ${{ inputs.testname}}
