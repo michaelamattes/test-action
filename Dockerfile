@@ -7,4 +7,4 @@ ARG TESTNAME=${INPUT_TESTNAME}
 COPY tests/* /tests/
 
 RUN ls --recursive /tests/
-RUN go test -run -v tests/${TOOL}/${TESTNAME}
+RUN go test -run -v tests/terratest/test_azure.go
