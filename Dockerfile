@@ -4,4 +4,6 @@ FROM golang:latest
 
 COPY tests/* /tests/
 
+RUN ls -la
+RUN ls -la /tests/*
 RUN go test -run -v tests/${INPUT_TOOL}/${INPUT_TESTNAME}
