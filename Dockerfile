@@ -4,4 +4,4 @@ FROM golang:latest
 
 COPY tests/* /tests/
 
-RUN go test -run tests/${INPUT_TOOL}/${INPUT_TESTNAME}
+RUN go test -run -v tests/${INPUT_TOOL}/${INPUT_TESTNAME}
