@@ -1,10 +1,20 @@
-#https://www.philschmid.de/create-custom-github-action-in-4-steps
+###################################### Image ######################################
+ARG TESTS_DIR=/tests
 
+## build Image
 FROM golang:latest
-ARG TOOL=${INPUT_TOOL}
-ARG TESTNAME=${INPUT_TESTNAME}
+SHELL ["/bin/bash", "-c"]
 
-COPY tests/* /tests/
+COPY ${TESTS_DIR}/ /${TESTS_DIR}/
 
-RUN ls --recursive /tests/
-RUN go test -run -v tests/terratest/test_azure.go
+###################################### Test Case ######################################
+ARG WORKDIR=/tests
+ARG INPUT_DEBUG='true'
+ARG INPUT_TOOL='terratest'
+ARG INPUT_TEST='azure'
+
+WORKDIR ${WORKDIR}
+
+RUN declare -l DEBUG="${INPUT_DEBUG}" TOOL="${INPUT_TOOL}" TEST="${INPUT_TEST}" && \
+    if [ "${DEBUG}" = "true" ] ; then DEBUG_MODE='-v'; else DEBUG_MODE=''; fi && \
+    go test ${DEBUG_MODE} ${WORKDIR}/${TOOL}/${TEST}_test.go
