@@ -2,7 +2,7 @@ package terratest
 
 import (
 	"testing"
-	"trial/common"
+	"trials/common"
 
 	"github.com/gruntwork-io/terratest/modules/terraform"
 )

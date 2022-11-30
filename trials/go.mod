@@ -1,4 +1,4 @@
-module trial
+module trials
 
 go 1.19
 
