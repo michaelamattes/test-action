@@ -1,0 +1,19 @@
+---
+name: 'Tests Action'
+description: 'Call Tests and get the results'
+inputs:
+  work_dir:
+    description: ''
+    required: true
+    default: '.github/actions/tests'
+  tool:
+    description: 'name of the tool to use e.g. terratest'
+    required: true
+  test:
+    description: 'name of the test to run e.g. azure'
+    required: true
+outputs: {}
+runs:
+  using: 'composite'
+  steps:
+    - run: "cd ${{ inputs.work_dir }} && go test -v ${{ inputs.tool }}/${{ inputs.test }}_test.go"
