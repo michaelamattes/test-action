@@ -20,4 +20,6 @@ outputs: {}
 runs:
   using: 'composite'
   steps:
-    - run: if [ "${{ inputs.debug }}" == "true" ]; then debug_mode="-v"; else debug_mode=""; fi  && cd ${{ inputs.work_dir }}/tests && go test $debug_mode ${{ inputs.tool }}/${{ inputs.test }}_test.go
+    #- run: if [ "${{ inputs.debug }}" == "true" ]; then debug_mode="-v"; else debug_mode=""; fi  && cd ${{ inputs.work_dir }}/tests && go test $debug_mode ${{ inputs.tool }}/${{ inputs.test }}_test.go
+    - run: echo $pwd
+    - run: cd ${{ inputs.work_dir }}/tests && go test -v ${{ inputs.tool }}/${{ inputs.test }}_test.go
