@@ -3,7 +3,7 @@ name: 'Tests Action'
 description: 'Call Tests and get the results'
 inputs:
   work_dir:
-    description: ''
+    description: 'name of the directory where the action is located'
     required: true
     default: '.github/actions/tests'
   tool:
@@ -16,4 +16,5 @@ outputs: {}
 runs:
   using: 'composite'
   steps:
+    - run: "echo ${{ inputs.work_dir }} ${{ inputs.tool }} ${{ inputs.test }}"
     - run: "cd ${{ inputs.work_dir }} && go test -v ${{ inputs.tool }}/${{ inputs.test }}_test.go"
