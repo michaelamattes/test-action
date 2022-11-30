@@ -5,7 +5,7 @@ inputs:
   work_dir:
     description: 'name of the directory where the action is located'
     required: true
-    default: './trials'
+    default: '/testaction'
   tool:
     description: 'name of the tool to use e.g. terratest'
     required: true
@@ -20,4 +20,4 @@ outputs: {}
 runs:
   using: 'composite'
   steps:
-    - run: if [ "${{ inputs.debug }}" == "true" ]; then debug_mode="-v"; else debug_mode=""; fi  && cd ${{ inputs.work_dir }}/trials && go test $debug_mode ${{ inputs.tool }}/${{ inputs.test }}_test.go
+    - run: if [ "${{ inputs.debug }}" == "true" ]; then debug_mode="-v"; else debug_mode=""; fi  && cd ${{ inputs.work_dir }}/tests && go test $debug_mode ${{ inputs.tool }}/${{ inputs.test }}_test.go
