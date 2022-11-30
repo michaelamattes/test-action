@@ -5,13 +5,17 @@ inputs:
   work_dir:
     description: 'name of the directory where the action is located'
     required: true
-    default: '.github/actions/tests'
+    default: '.github/actions/trial'
   tool:
     description: 'name of the tool to use e.g. terratest'
     required: true
   test:
     description: 'name of the test to run e.g. azure'
     required: true
+  debug:
+    description: 'should debug mode be enabled'
+    required: false
+    default: false
 outputs: {}
 runs:
   using: 'composite'
