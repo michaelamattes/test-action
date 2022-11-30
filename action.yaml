@@ -11,8 +11,6 @@ inputs:
     required: true
 outputs: {}
 runs:
-  using: 'docker'
-  image: 'Dockerfile'
-  args:
-    - ${{ inputs.tool}}
-    - ${{ inputs.testname}}
+  using: 'composite'
+  steps:
+    - run: "cd tests && go test -v terratest/azure_test.go"
