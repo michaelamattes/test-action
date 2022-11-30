@@ -2,7 +2,6 @@ package common
 
 import (
 	"log"
-	"os"
 )
 
 func Log(message string) {
@@ -37,8 +36,7 @@ func LogMiss(message string) {
 }
 
 func GetTestSettings() map[string]string {
-	wd, _ := os.Getwd()
-	path := wd + "/../../../tests"
+	path := "/testcase/tests"
 
 	settings := make(map[string]string)
 	settings["path"] = path
