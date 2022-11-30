@@ -15,10 +15,11 @@ inputs:
   debug:
     description: 'should debug mode be enabled'
     required: false
-    default: false
+    default: 'false'
 outputs: {}
 runs:
   using: 'composite'
   steps:
-    - run: "echo ${{ inputs.work_dir }} ${{ inputs.tool }} ${{ inputs.test }}"
-    - run: "cd ${{ inputs.work_dir }} && go test -v ${{ inputs.tool }}/${{ inputs.test }}_test.go"
+    - run: echo ${{ inputs.work_dir }} ${{ inputs.tool }} ${{ inputs.test }}
+    - run: echo $(pwd) && ls ${{ inputs.work_dir }}
+    - run: if [ "${{ inputs.debug }}" == "true" ]; then debug_mode="-v"; else debug_mode=""; fi  && cd ${{ inputs.work_dir }} && go test $debug_mode ${{ inputs.tool }}/${{ inputs.test }}_test.go
